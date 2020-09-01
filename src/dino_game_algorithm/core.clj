@@ -9,6 +9,10 @@
   [x]
   (str  "Hello " x))
 
+(defn select [chromosomes](take 2 chromosomes))
+
+
+
 (defroutes my_routes
   (GET "/" [] (view/index-page))
   (GET "/rest" [] (response {:email "jovan.lazic.10@gmail.com"}))
