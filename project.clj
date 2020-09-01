@@ -1,15 +1,21 @@
 (defproject dino-game-algorithm "0.1.0-SNAPSHOT"
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
+  :description "Genetic Algorithm playing T-Rex (Dino) game"
+  :url "www.google.com"
   :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
             :url "https://www.eclipse.org/legal/epl-2.0/"}
-  :plugins [[lein-ring "0.12.5"]]
-  :ring{:handler dino-game-algorithm.core/app
-        :auto-reload? true
-        :auto-refresh? false}
   :dependencies [[org.clojure/clojure "1.10.1"]
-                 [ring/ring "1.7.0"]
-                 [ring/ring-json "0.2.0"]
-                 [hiccup "1.0.4"]
-                 [compojure "1.6.2"]]
-  :repl-options {:init-ns dino-game-algorithm.core})
+                 [compojure "1.6.1"]
+                 ; Compojure - A basic routing library
+                 [compojure "1.6.1"]
+                 ; Our Http library for client/server
+                 [http-kit "2.3.0"]
+                 ; Ring defaults - for query params etc
+                 [ring/ring-defaults "0.3.2"]
+                 [ring/ring-json "0.5.0"]
+                 ; Clojure data.JSON library
+                 [org.clojure/data.json "0.2.6"]]
+
+  ;:main ^:skip-aot dots-and-boxes.core
+  :main dino-game-algorithm.core
+  :target-path "target/%s"
+  :profiles {:uberjar {:aot :all}})

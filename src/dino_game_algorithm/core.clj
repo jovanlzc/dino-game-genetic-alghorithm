@@ -1,13 +1,15 @@
 (ns dino-game-algorithm.core
-  (:use compojure.core
-        ring.middleware.json
-        ring.util.response)
-  (:require [compojure.route :as route]
-            [dino-game-algorithm.view :as view]))
-
-(defn foo
-  [x]
-  (str  "Hello " x))
+ 
+  (:require [org.httpkit.server :as server]
+            [compojure.core :as cc]
+            [compojure.route :as route]
+            [ring.middleware.defaults :as rmd]
+            [ring.middleware.json :as rmjs]
+            [clojure.pprint :as pp]
+            [clojure.string :as str]
+            [clojure.data.json :as json]
+            [dino-game-algorithm.lib.routes :as routes])
+  (:gen-class))
 
 (defn select [chromosomes](take 2 chromosomes))
 
@@ -29,9 +31,13 @@
          )
   ))
 
-(defroutes my_routes
-  (GET "/" [] (view/index-page))
-  (GET "/rest" [] (response {:email "jovan.lazic.10@gmail.com"}))
-  (route/resources "/"))
+(cc/defroutes app-routes
+  
+  (cc/POST "/cross-over" [] routes/cross-over-route))
 
-(def app (wrap-json-response my_routes))
+(defn -main
+  "This is our main entry point"
+  [& args]
+  (let [port 3000]
+    (server/run-server (rmjs/wrap-json-params (rmjs/wrap-json-response (rmd/wrap-defaults #'app-routes (assoc-in rmd/site-defaults [:security :anti-forgery] false)))) {:port port})
+    (println (str "Running webserver at http:/127.0.0.1:" port "/"))))
