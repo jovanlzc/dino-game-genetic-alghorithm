@@ -43,3 +43,14 @@
     (if (= (count weights-array) 4)
       weights-array
       (recur (conj weights-array (* (- (rand) 0.5) 2))))))
+
+(defn predict [weights inputs]
+  (loop [remaining-weights weights remaining-inputs inputs value 0]
+    (if (empty? remaining-weights) 
+      (if (< value 0)
+        0
+        1)
+      (if (empty? remaining-inputs)
+        (recur (drop 1 remaining-weights) (drop 1 remaining-inputs) (+ (first remaining-weights) value))
+        (recur (drop 1 remaining-weights) (drop 1 remaining-inputs) (+ (* (first remaining-weights) (first remaining-inputs)) value))))
+    ))
