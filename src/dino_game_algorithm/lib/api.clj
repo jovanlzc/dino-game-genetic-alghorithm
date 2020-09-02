@@ -7,11 +7,23 @@
    [clojure.data.json :as cjson])
   (:gen-class))
 
+(defn mutate-gene [chromosome] 
+  (let [mutation-point (int (Math/floor (* (rand) (count chromosome))))]
+    (loop [remaining-genes chromosome new-chromosome []] 
+    (if (empty? remaining-genes) 
+      new-chromosome
+      (if (=  (count new-chromosome) mutation-point)
+           (recur (drop 1 remaining-genes) (conj new-chromosome (rand)))
+        (recur (drop 1 remaining-genes) (conj new-chromosome (first remaining-genes))))
+      ))))
 
-
+(defn mutate [{chromosomes :chromosomes :as vector}]
+  (loop [remaining-chromosomes chromosomes mutation-chromosomes []]
+    (if (empty? remaining-chromosomes)
+      mutation-chromosomes
+      (recur (drop 1 remaining-chromosomes) (conj mutation-chromosomes (mutate-gene (first remaining-chromosomes)))))))
 
 (defn select [chromosomes] (take 2 chromosomes))
-
 
 (defn change-chromosome [chromosomes new-offset1 new-offset2]
   (conj (drop-last 2 chromosomes) new-offset1 new-offset2))
