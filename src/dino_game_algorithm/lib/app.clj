@@ -44,7 +44,7 @@
       weights-array
       (recur (conj weights-array (* (- (rand) 0.5) 2))))))
 
-(defn predict [weights inputs]
+(defn predict [{weights :weights :as vector inputs :inputs as inputs}]
   (loop [remaining-weights weights remaining-inputs inputs value 0]
     (if (empty? remaining-weights) 
       (if (< value 0)

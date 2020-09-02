@@ -14,9 +14,10 @@
 (defn select [chromosomes](take 2 chromosomes))
 
 (cc/defroutes app-routes
-  
+
   (cc/POST "/cross-over" [] routes/cross-over-route)
-  (cc/POST "/mutate" [] routes/mutate-route))
+  (cc/POST "/mutate" [] routes/mutate-route)
+  (cc/POST "/predict" [] routes/predict-route))
 
 (defn -main
   "This is our main entry point"

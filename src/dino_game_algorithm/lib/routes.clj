@@ -22,3 +22,10 @@
   {:status 200
    :headers {"Content-Type" "application/json"}
    :body (-> (app/mutate (req :params)))})
+
+(defn predict-route
+  "Predict skoka"
+  [req]
+  {:status 200
+   :headers {"Content-Type" "application/json"}
+   :body (-> (app/predict (req :params)))})
