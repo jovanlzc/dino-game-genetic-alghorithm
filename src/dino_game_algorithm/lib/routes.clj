@@ -16,3 +16,9 @@
    :headers {"Content-Type" "application/json"}
    :body (-> (api/cross-over (req :params)))})
 
+(defn mutate-route
+  "Mutate hromozoma"
+  [req]
+  {:status 200
+   :headers {"Content-Type" "application/json"}
+   :body (-> (api/mutate (req :params)))})

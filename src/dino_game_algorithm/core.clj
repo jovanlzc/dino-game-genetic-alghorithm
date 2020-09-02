@@ -15,7 +15,8 @@
 
 (cc/defroutes app-routes
   
-  (cc/POST "/cross-over" [] routes/cross-over-route))
+  (cc/POST "/cross-over" [] routes/cross-over-route)
+  (cc/POST "/mutate" [] routes/mutate-route))
 
 (defn -main
   "This is our main entry point"
