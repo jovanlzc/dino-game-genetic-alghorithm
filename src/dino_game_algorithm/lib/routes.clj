@@ -5,7 +5,7 @@
    [clojure.pprint :as pp]
    [clojure.string :as str]
    [clojure.data.json :as json]
-   [dino-game-algorithm.lib.api :as api])
+   [dino-game-algorithm.lib.app :as app])
   (:gen-class))
 
 
@@ -14,11 +14,11 @@
   [req]
   {:status 200
    :headers {"Content-Type" "application/json"}
-   :body (-> (api/cross-over (req :params)))})
+   :body (-> (app/cross-over (req :params)))})
 
 (defn mutate-route
   "Mutate hromozoma"
   [req]
   {:status 200
    :headers {"Content-Type" "application/json"}
-   :body (-> (api/mutate (req :params)))})
+   :body (-> (app/mutate (req :params)))})
