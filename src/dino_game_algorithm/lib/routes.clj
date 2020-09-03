@@ -29,3 +29,10 @@
   {:status 200
    :headers {"Content-Type" "application/json"}
    :body (-> (app/predict (req :params)))})
+
+(defn initiliaze-route
+  "Pocetne vrednosti tezinskih koeficijenata"
+  [req]
+  {:status 200
+   :headers {"Content-Type" "application/json"}
+   :body (str (json/write-str (app/initiliaze)))})
