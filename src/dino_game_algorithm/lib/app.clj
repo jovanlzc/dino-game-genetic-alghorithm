@@ -8,7 +8,7 @@
   (:gen-class))
 
 (defn mutate-gene [chromosome] 
-  (let [mutation-point (int (Math/floor (* (rand) (count chromosome))))]
+  (let [mutation-point (int (Math/floor (* (rand) (dec (count chromosome)))))]
     (loop [remaining-genes chromosome new-chromosome []] 
     (if (empty? remaining-genes) 
       new-chromosome
@@ -17,7 +17,8 @@
         (recur (drop 1 remaining-genes) (conj new-chromosome (first remaining-genes))))
       ))))
 
-(defn mutate [{chromosomes :chromosomes :as vector}]
+(defn mutate [{chromosomes :chromo :as vector}]
+  (println (str "pristigli hromozom" chromosomes))
   (loop [remaining-chromosomes chromosomes mutation-chromosomes []]
     (if (empty? remaining-chromosomes)
       mutation-chromosomes
@@ -42,14 +43,14 @@
   (loop [weights-array []]
     (if (= (count weights-array) 4)
       weights-array
-      (recur (conj weights-array (* (- (rand) 0.5) 2))))))
+      (recur (conj weights-array (* (- (rand) 0.6) 2))))))
 
-(defn predict [{weights :weights :as vector inputs :inputs as inputs}]
+(defn predict [weights inputs]
   (loop [remaining-weights weights remaining-inputs inputs value 0]
     (if (empty? remaining-weights) 
       (if (< value 0)
-        0
-        1)
+        "0"
+        "1")
       (if (empty? remaining-inputs)
         (recur (drop 1 remaining-weights) (drop 1 remaining-inputs) (+ (first remaining-weights) value))
         (recur (drop 1 remaining-weights) (drop 1 remaining-inputs) (+ (* (first remaining-weights) (first remaining-inputs)) value))))

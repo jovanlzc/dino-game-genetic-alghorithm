@@ -21,14 +21,16 @@
   [req]
   {:status 200
    :headers {"Content-Type" "application/json"}
-   :body (-> (app/mutate (req :params)))})
+    :body (str (json/write-str (app/mutate (req :params))))
+   })
 
 (defn predict-route
   "Predict skoka"
   [req]
   {:status 200
    :headers {"Content-Type" "application/json"}
-   :body (-> (app/predict (req :params)))})
+   :body (-> (app/predict (get-in req [:params :weights]) (get-in req [:params :inputs])))
+   })
 
 (defn initiliaze-route
   "Pocetne vrednosti tezinskih koeficijenata"
