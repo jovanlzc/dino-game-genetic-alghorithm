@@ -21,7 +21,7 @@
   [req]
   {:status 200
    :headers {"Content-Type" "application/json"}
-    :body (str (json/write-str (app/mutate (req :params))))
+    :body (str (json/write-str (app/mutate (get-in req [:params :chromo]))))
    })
 
 (defn predict-route
@@ -29,7 +29,7 @@
   [req]
   {:status 200
    :headers {"Content-Type" "application/json"}
-   :body (-> (app/predict (get-in req [:params :weights]) (get-in req [:params :inputs])))
+   :body (-> (str (json/write-str(app/predict (get-in req [:params :weights]) (get-in req [:params :inputs])))))
    })
 
 (defn initiliaze-route
