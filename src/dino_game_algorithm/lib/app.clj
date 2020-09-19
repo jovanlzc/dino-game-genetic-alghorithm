@@ -15,7 +15,7 @@
     (if (empty? remaining-genes) 
     (do (println (str "after-mutation:" new-chromosome))new-chromosome)
       (if (=  (count new-chromosome) mutation-point)
-           (recur (drop 1 remaining-genes) (conj new-chromosome (* (- (rand) 0.6) 1.67)))
+           (recur (drop 1 remaining-genes) (conj new-chromosome (* (- (rand) 0.5) 2)))
         (recur (drop 1 remaining-genes) (conj new-chromosome (first remaining-genes))))
       ))))
 
@@ -30,7 +30,7 @@
 (defn change-chromosome [chromosomes new-offset1 new-offset2]
   (conj (drop-last 2 chromosomes) new-offset1 new-offset2))
 
-(defn cross-over [{chromosomes :chromosomes :as vector}]
+(defn cross-over [chromosomes]
   (let [[offset1 offset2 &rest] chromosomes]
     (let [cross-over-point (int (Math/floor (* (rand) (count offset1))))]
       (loop [remaining-offsets1 offset1 remaining-offsets2 offset2 new-offset1 [] new-offset2 []]
