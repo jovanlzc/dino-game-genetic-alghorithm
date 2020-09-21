@@ -2,7 +2,7 @@
 
 ## Potrebno:
 
-  Leiningen 2.0.0 or above Setup
+  Leiningen 2.0.0 ili novija verzija
 
 ## Koraci za pokretanje aplikacije:
 
