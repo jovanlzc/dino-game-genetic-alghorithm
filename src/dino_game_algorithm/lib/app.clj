@@ -15,7 +15,7 @@
     (if (empty? remaining-genes) 
     (do (println (str "after-mutation:" new-chromosome))new-chromosome)
       (if (=  (count new-chromosome) mutation-point)
-           (recur (drop 1 remaining-genes) (conj new-chromosome (* (- (rand) 0.5) 2)))
+           (recur (drop 1 remaining-genes) (conj new-chromosome (* (- (rand) 0.69) 1.44)))
         (recur (drop 1 remaining-genes) (conj new-chromosome (first remaining-genes))))
       ))))
 
