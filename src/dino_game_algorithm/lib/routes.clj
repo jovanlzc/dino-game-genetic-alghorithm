@@ -14,7 +14,7 @@
   [req]
   {:status 200
    :headers {"Content-Type" "application/json"}
-   :body (str (json/write-str (app/mutate (get-in req [:params :chromo]))))})
+   :body (str (json/write-str (app/cross-over (get-in req [:params :chromo]))))})
 
 (defn mutate-route
   "Mutate hromozoma"

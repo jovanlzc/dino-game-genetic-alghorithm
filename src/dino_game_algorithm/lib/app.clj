@@ -32,10 +32,15 @@
 
 (defn cross-over [chromosomes]
   (let [[offset1 offset2 &rest] chromosomes]
-    (let [cross-over-point (int (Math/floor (* (rand) (count offset1))))]
+    (let [cross-over-point (inc (rand-int 2))]
+      (println (str "cross-over-point:" cross-over-point))
+      (println (str "offset1:" offset1))
+      (println (str "offset2:" offset2))
       (loop [remaining-offsets1 offset1 remaining-offsets2 offset2 new-offset1 [] new-offset2 []]
         (if (or (empty? remaining-offsets1) (empty? remaining-offsets2))
-          (change-chromosome chromosomes new-offset1 new-offset2)
+        (do (println (str "newoffset1" new-offset1))
+            (println (str "newoffset2" new-offset2))
+            (change-chromosome chromosomes new-offset1 new-offset2))
           (if (< (count new-offset1) cross-over-point)
             (recur (drop 1 remaining-offsets1) (drop 1 remaining-offsets2) (conj new-offset1 (first remaining-offsets2)) (conj new-offset2 (first remaining-offsets1)))
             (recur (drop 1 remaining-offsets1) (drop 1 remaining-offsets2) (conj new-offset1 (first remaining-offsets1)) (conj new-offset2 (first remaining-offsets2)))))))))
