@@ -6,8 +6,12 @@
 
 ## Koraci za pokretanje aplikacije:
 
-  Aplikacija je okacena na adresi:
-
+  lein run - server ce biti pokrenut na adresi localhost:3000
+  Pokrenuti front deo: https://github.com/jovanlzc/front-dino-game/blob/master/README.md
+  1)npm install
+  2)npm start
+  i otvoriti u browseru localhost:8080
+  
 ## Biblioteke:
 
   Leiningen - dependency management library for building and configure Clojure project
