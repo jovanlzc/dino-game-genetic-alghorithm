@@ -7,7 +7,7 @@
 ## Koraci za pokretanje aplikacije:
 
   lein run - server ce biti pokrenut na adresi localhost:3000
-  Pokrenuti front deo: https://github.com/jovanlzc/front-dino-game/blob/master/README.md
+  .Pokrenuti front deo: https://github.com/jovanlzc/front-dino-game/blob/master/README.md
   1)npm install
   2)npm start
   i otvoriti u browseru localhost:8080
